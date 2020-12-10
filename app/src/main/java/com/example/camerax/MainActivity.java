@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         previewView = findViewById(R.id.viewFinder);
         takeButton = findViewById(R.id.camera_capture_button);
-
+        cameraExecutor = Executors.newSingleThreadExecutor();
         takeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cameraExecutor = Executors.newSingleThreadExecutor();
+//
                 takePhoto();
                 outputDirectory = getOutputDirectory();
             }
@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private File getOutputDirectory() {
-        //Odczytenie ścieżki do katalogu zdjęć
-        return null;
+        File[] files = getExternalMediaDirs();
+        return files[0];
     }
 
     private void startCamera() {
